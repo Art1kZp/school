@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form {
+    width: 330px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px #ccc;
+}
+.form__box {
+    margin-bottom: 10px;
+}
+form div {
+    margin: 0 10px;
+}
+.form__title{
+    padding: 5px;
+}
+.form__box-avatar{
+    margin-bottom: 10px;
+}
+.form__file{
+    width: 221px;
+    cursor: pointer;
+}
+.form__input {
+    outline: none;
+    border-radius: 50px;
+    padding: 2px 8px;
+    transition: 1s;
+    text-align: center;
+}
+.form__input:focus {
+    width: 160px;
+
+}
+.form__label {
+    display: inline-block;
+    width: 80px;
+}
+.btn {
+    text-align: center;
+}
+.submit {
+    margin-bottom: 20px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 12px;
+    letter-spacing: 2px;
+    box-shadow: 5px 4px 6px grey;
+    border: none;
+    outline: none;
+}
+.submit:focus{
+    background-color: rgb(209, 205, 205);
+}
+.submit:active{
+    box-shadow: inset 0px 2px 1px -2px
+}
+.error{
+    padding-left: 39px;
+    text-align: center;
+    color: red;
+}

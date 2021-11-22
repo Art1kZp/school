@@ -1,0 +1,33 @@
+.main-box {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+
+    transform-style: preserve-3d;
+    animation: main-rotate 10s infinite linear;
+}
+.outer {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+.interior {
+    transform: translateZ(-5em) scale(0.8);
+}
+@keyframes main-rotate {
+    0% {
+        transform: rotateY(360deg);
+        background: red;
+    }
+    37% {
+        
+        background: orange
+    }
+    70% {
+        
+        background: green
+    }
+    100% {
+        background: red;
+    }
+}

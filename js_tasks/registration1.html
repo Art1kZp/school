@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./registr-css.css">
+</head>
+<body>
+    <div>
+        <form id="form" class="form" method="post" enctype="multipart/form-data">
+            <h3 class="form__title">Registration Form</h3>
+            <div class="form__box-avatar">               
+                <label class="form__label" for="">Avatar</label>
+                <input id="fileUpload" accept=".png" class="field form__file" type="file">
+            </div> 
+            <div class="form__box">
+                <label class="form__label" for="">First Name</label>
+                <input id="firstname" class="field firstName form__input" type="text">
+            </div>              
+            <div class="form__box">   
+                <label class="form__label" for="">Last Name</label>
+                <input id="lastname" class="field lastName form__input" type="text">
+            </div>                
+            <div class="form__box">
+                <label class="form__label" for="">Age</label>
+                <input id="age" class="field age form__input" type="text">
+            </div>                
+            <div class="form__box">
+                <label class="form__label" for="">E-mail</label>
+                <input id="email" class="field email form__input" type="text">
+            </div>                
+            <div class="form__box">
+                <label class="form__label" for="">Password</label>
+                <input id="password" class="field password form__input" type="text">  
+            </div>     
+            <div class="btn">
+                <button class="submit" type="submit">Submit</button>
+                <!-- disabled -->
+            </div>            
+        </form>
+    </div>
+    <script src="./formValidation.js"></script>
+</body>
+</html>
