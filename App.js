@@ -1,177 +1,97 @@
-import {
-    // Component,
-    useState,
-    useRef
-} from 'react';
+import React from "react";
+import { Button} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Title } from './components/Title';
-import './App.css';
+import HomeScreen from "./sources/HomeScreen";
+import DetailsScreen from "./sources/DetailsScreen";
+import CreatePostScreen from "./sources/CreatePostScreen";
+import PictureScreen from "./sources/PictureScreen";
+import CarScreen from "./sources/CarScreen"
+import SettingScreen from "./sources/SettingScreen";
 
-const INITIAL_USERS = [
-    {
-        id: 1,
-        name: 'John',
-        age: 23,
-        keyword: 'Bonjour'
-    },
-    {
-        id: 2,
-        name: 'Mike',
-        age: 45,
-        keyword: 'Aloha'
-    },
-    {
-        id: 3,
-        name: 'Bob',
-        age: 56,
-        keyword: 'Hello'
-    }
-];
+// headerTitle: (props) => <LogoTitle {...props} />  --- add to something stack.screen optionns
 
-const getInitialUsers = () => {
-    console.time('Timer');
+// function add image
 
-    for (let i = 0; i < 10000000; i++) {
-        // ...
-    }
-
-    console.timeEnd('Timer');
-
-    return INITIAL_USERS;
-};
-
-export const App = () => {
-    const [users, setUsers] = useState(() => getInitialUsers());
-    const [showHiddenMessage, setShowHiddenMessage] = useState(false);
-    const [firstName, setFirstName] = useState('');
-
-    const buttonRef = useRef();
-    const prevUsersRef = useRef(users);
-
-    const handleGetButtonElement = () => {
-        buttonRef.current.click();
-    };
-
-    const handleRemoveUser = userId => {
-        setUsers(prevUsers => {
-            const filteredUsers = prevUsers.filter(u => u.id !== userId);
-
-            prevUsersRef.current = prevUsers;
-
-            return filteredUsers;
-        });
-    };
-
-    const handleShowHiddenMessage = () => setShowHiddenMessage(true);
-    const handleChangeInput = e => setFirstName(e.target.value);
-
-    const count = users.length;
-
-    return (
-        <div className="app">
-            <span>User count: {count}</span>
-
-            <div>
-                <button ref={buttonRef} type="button" onClick={handleShowHiddenMessage}>
-                    Show hidden message
-                </button>
-
-                {showHiddenMessage && <p>This is a hidden message!</p>}
-            </div>
-
-            <div>
-                <button type="button" onClick={handleGetButtonElement}>
-                    Get button element
-                </button>
-            </div>
-
-            <div>
-                <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First name"
-                    value={firstName}
-                    onChange={handleChangeInput}
-                />
-            </div>
-
-            {users.length > 0 ? (
-                users.map(({ id, age, ...other }) => (
-                    <div className="card" key={id}>
-                        <Title {...other} />
-                        <strong>{age}</strong>
-
-                        <button type="button" onClick={() => handleRemoveUser(id)}>
-                            Remove
-                        </button>
-                    </div>
-                ))
-            ) : (
-                <p>There are no users</p>
-            )}
-        </div>
-    );
-};
-
-// export class App extends Component {
-//     // constructor(props) {
-//     //     super(props);
-
-//     //     this.state = {
-//     //         users: INITIAL_USERS,
-//     //         showHiddenMessage: false
-//     //     };
-
-//     //     this.handleRemoveUser = this.handleRemoveUser.bind(this);
-//     // }
-
-//     state = {
-//         users: INITIAL_USERS,
-//         showHiddenMessage: false
-//     };
-
-//     handleRemoveUser = userId => {
-//         this.setState(prevState => ({
-//             users: prevState.users.filter(u => u.id !== userId)
-//         }));
-//     };
-
-//     handleShowHiddenMessage = () => {
-//         this.setState({ showHiddenMessage: true });
-//     };
-
-//     render() {
-//         const { users, showHiddenMessage } = this.state;
-
-//         const count = users.length;
-
-//         return (
-//             <div className="app">
-//                 <span>User count: {count}</span>
-
-//                 <div>
-//                     <button type="button" onClick={this.handleShowHiddenMessage}>
-//                         Show hidden message
-//                     </button>
-
-//                     {showHiddenMessage && <p>This is a hidden message!</p>}
-//                 </div>
-
-//                 {users.length > 0 ? (
-//                     users.map(({ id, age, ...other }) => (
-//                         <div className="card" key={id}>
-//                             <Title {...other} />
-//                             <strong>{age}</strong>
-
-//                             <button type="button" onClick={() => this.handleRemoveUser(id)}>
-//                                 Remove
-//                             </button>
-//                         </div>
-//                     ))
-//                 ) : (
-//                     <p>There are no users</p>
-//                 )}
-//             </div>
-//         );
-//     }
+// function LogoTitle() {
+//   return (
+//     <Image
+//       style={{ width: 50, height: 50 }}
+//       source={{uri: 'https://reactjs.org/logo-og.png'}}
+//     />
+//   );
 // }
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (   
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'orange',
+          },
+          headerTitleStyle: {
+            fontWeight: '500'
+          },
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: 'My home',
+            headerStyle: {
+              backgroundColor: 'green',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            // headerTitle
+            headerLeft: () => (
+              <Button
+                onPress={() => console.log('Info Button')}
+                title="Info"
+                color="black"
+              />)
+          }}
+        />
+        <Stack.Screen 
+          name="Details" 
+          component={DetailsScreen}
+          initialParams={{itemId: 40}}
+        />
+        <Stack.Screen 
+          name="CreatePost" 
+          component={CreatePostScreen}
+        />
+        <Stack.Screen 
+          name="Picture" 
+          component={PictureScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: 'red',
+            },
+            headerTintColor: '#fff'
+          }}
+        />
+        <Stack.Screen 
+          name="Car"
+          component={CarScreen}
+        />
+        <Stack.Screen 
+          name="Setting"
+          component={SettingScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+  
+
